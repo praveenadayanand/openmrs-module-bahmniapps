@@ -15,10 +15,10 @@ Bahmni.Clinical.DispostionActionMapper = function () {
 
     this.map = function (dispositionActions) {
         return dispositionActions.map(function (dispositionAction) {
-            if((dispositionAction.prefferedName) == undefined){
-            return {name: dispositionAction.name.name, code: getMappingCode(dispositionAction) };
-            }else{
-            return {name: dispositionAction.prefferedName, code: getMappingCode(dispositionAction) };
+            if ((dispositionAction.prefferedName) == undefined) {
+                return { name: dispositionAction.name.name, code: getMappingCode(dispositionAction) };
+            } else {
+                return { name: dispositionAction.prefferedName, code: getMappingCode(dispositionAction) };
             }
         });
     };

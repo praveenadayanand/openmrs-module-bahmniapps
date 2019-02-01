@@ -48,8 +48,9 @@
         this.viewName = getViewUrl(this);
         this.hideEmptyDisplayControl = section.hideEmptyDisplayControl != undefined ? section.hideEmptyDisplayControl : false;
         this.isDataAvailable = true;
-
+        this.translationKey = section.translationKey;
         this.id = getId(this, $filter);
+        this.title = section.title;
     };
 
     Bahmni.Common.DisplayControl.Dashboard.Section.create = function (section, $filter) {

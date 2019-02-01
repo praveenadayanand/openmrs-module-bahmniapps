@@ -100,9 +100,9 @@ angular.module('bahmni.common.displaycontrol.observation')
                     var translation = $translate.instant(translationKey);
                     if (translation == translationKey) {
                         return translation;
-                }
-                return translation;
-            };
+                    }
+                    return translation;
+                };
                 $scope.toggle = function (element) {
                     element.isOpen = !element.isOpen;
                 };

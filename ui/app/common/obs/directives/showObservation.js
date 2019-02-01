@@ -6,9 +6,7 @@ angular.module('bahmni.common.obs')
             $scope.toggle = function (observation) {
                 observation.showDetails = !observation.showDetails;
             };
-
             $scope.print = $rootScope.isBeingPrinted || false;
-
             $scope.dateString = function (observation) {
                 var filterName;
                 if ($scope.showDate && $scope.showTime) {
@@ -19,6 +17,9 @@ angular.module('bahmni.common.obs')
                     return null;
                 }
                 return $filter(filterName)(observation.observationDateTime);
+            };
+            $scope.translatedLabel = function (observation) {
+                return observation.conceptNameToDisplay;
             };
             $scope.openVideoInPopup = function (observation) {
                 ngDialog.open({

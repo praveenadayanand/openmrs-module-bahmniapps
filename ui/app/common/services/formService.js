@@ -14,6 +14,9 @@ angular.module('bahmni.common.conceptSet')
             return $http.get(Bahmni.Common.Constants.formUrl + '/' + formUuid, {params: params});
         };
 
+        var getFormPrivilegesFromFormName = function (formName, formVersion) {
+            return $http.get(Bahmni.Common.Constants.formPrivilegesFromFormNameUrlApi, { params: {formName: formName, formVersion: formVersion }});
+        };
         const getUrlWithUuid = function (url, patientUuid) {
             return url.replace('{patientUuid}', patientUuid);
         };
@@ -44,8 +47,10 @@ angular.module('bahmni.common.conceptSet')
             getFormList: getFormList,
             getAllForms: getAllForms,
             getFormDetail: getFormDetail,
+            getFormPrivilegesFromFormName: getFormPrivilegesFromFormName,
             getFormTranslations: getFormTranslations,
             getFormTranslate: getFormTranslate,
             getAllPatientForms: getAllPatientForms
+
         };
     }]);
