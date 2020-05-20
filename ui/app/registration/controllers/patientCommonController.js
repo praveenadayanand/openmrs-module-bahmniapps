@@ -82,13 +82,17 @@ angular.module('bahmni.registration')
                             $http.get(Bahmni.Common.Constants.conceptSearchByFullNameUrl, {
                                 params: {
                                     name: deathConcept,
-                                    v: "custom:(uuid,name,set,setMembers:(uuid,display,name:(uuid,name),retired))"
+                                    v: "custom:(uuid,name,set,names,setMembers:(uuid,display,name:(uuid,name),names,retired))"
                                 },
                                 withCredentials: true
                             }).then(function (results) {
                                 $scope.deathConceptExists = !!results.data.results.length;
                                 $scope.deathConcepts = results.data.results[0] ? results.data.results[0].setMembers : [];
-                                $scope.deathConcepts = filterRetireDeathConcepts($scope.deathConcepts);
+
+                                var activeDeathConcepts = filterRetireDeathConcepts($scope.deathConcepts);
+                                _.forEach(activeDeathConcepts, function(deathConcept, index)  {
+                                    activeDeathConcepts[index] = $scope.updateDisplayFieldToLocaleSpecific($scope.filterNamesForLocale(deathConcept, $rootScope.currentUser.userProperties.defaultLocale, "FULLY_SPECIFIED"))
+                                });
                             });
                         }
                     }]
@@ -99,6 +103,18 @@ angular.module('bahmni.registration')
                 return _.filter(deathConcepts, function (concept) {
                     return !concept.retired;
                 });
+            };
+
+            $scope.filterNamesForLocale = function (jsonNames, locale, nametype) {
+                var localeNames =  _.filter(jsonNames.names, function(name) {
+                    return name.locale == locale && name.conceptNameType == nametype
+                });
+                jsonNames.names = localeNames;
+                return jsonNames;
+            };
+
+            $scope.updateDisplayFieldToLocaleSpecific = function (concept) {
+                concept.display = concept.names[0].display;
             };
 
             $scope.isAutoComplete = function (fieldName) {
