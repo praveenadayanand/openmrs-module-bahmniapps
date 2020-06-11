@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.clinical').factory('initialization',
-    ['$rootScope', 'authenticator', 'appService', 'spinner', 'configurations', 'orderTypeService', 'mergeService', '$q', 'messagingService',
-        function ($rootScope, authenticator, appService, spinner, configurations, orderTypeService, mergeService, $q, messagingService) {
+    ['$rootScope', 'authenticator', 'appService', 'spinner', 'configurations', 'orderTypeService', 'mergeService', '$q', 'messagingService', '$translate',
+        function ($rootScope, authenticator, appService, spinner, configurations, orderTypeService, mergeService, $q, messagingService, $translate) {
             return function (config) {
                 var loadConfigPromise = function () {
                     return configurations.load([
@@ -20,10 +20,13 @@ angular.module('bahmni.clinical').factory('initialization',
                         'defaultEncounterType'
                     ]).then(function () {
                         $rootScope.genderMap = configurations.genderMap();
+                        Bahmni.Common.Util.GenderUtil.translateGender($rootScope.genderMap, $translate);
                         $rootScope.relationshipTypeMap = configurations.relationshipTypeMap();
                         $rootScope.diagnosisStatus = (appService.getAppDescriptor().getConfig("diagnosisStatus") && appService.getAppDescriptor().getConfig("diagnosisStatus").value || "RULED OUT");
                     });
                 };
+
+
 
                 var checkPrivilege = function () {
                     return appService.checkPrivilege("app:clinical");

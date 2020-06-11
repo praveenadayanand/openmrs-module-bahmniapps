@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.registration').factory('initialization',
-    ['$rootScope', '$q', 'configurations', 'authenticator', 'appService', 'spinner', 'preferences', 'locationService', 'mergeService',
-        function ($rootScope, $q, configurations, authenticator, appService, spinner, preferences, locationService, mergeService) {
+    ['$rootScope', '$q', 'configurations', 'authenticator', 'appService', 'spinner', 'preferences', 'locationService', 'mergeService', '$translate',
+        function ($rootScope, $q, configurations, authenticator, appService, spinner, preferences, locationService, mergeService, $translate) {
             var getConfigs = function () {
                 var configNames = ['encounterConfig', 'patientAttributesConfig', 'identifierTypesConfig', 'addressLevels', 'genderMap', 'relationshipTypeConfig', 'relationshipTypeMap', 'loginLocationToVisitTypeMapping'];
                 return configurations.load(configNames).then(function () {
@@ -17,6 +17,7 @@ angular.module('bahmni.registration').factory('initialization',
                     $rootScope.addressLevels = configurations.addressLevels();
                     $rootScope.fieldValidation = appService.getAppDescriptor().getConfigValue("fieldValidation");
                     $rootScope.genderMap = configurations.genderMap();
+                    Bahmni.Common.Util.GenderUtil.translateGender($rootScope.genderMap, $translate);
                     $rootScope.relationshipTypeMap = configurations.relationshipTypeMap();
                     $rootScope.relationshipTypes = configurations.relationshipTypes();
                 });
