@@ -15,13 +15,13 @@ Bahmni.Registration.PatientConfig = (function () {
             var hiddenAttributes = patientInformation["hidden"] && patientInformation["hidden"].attributes;
             delete patientInformation["hidden"];
 
-            var otherInformationAttributes = this.attributeTypes.map(function(item) {
-                    item.keyPrefix = "PATIENT_ATTRIBUTE_" ;
-                    return item;
-                    }).filter(function (item) {
+            var otherInformationAttributes = this.attributeTypes.map(function (item) {
+                item.keyPrefix = "PATIENT_ATTRIBUTE_";
+                return item;
+            }).filter(function (item) {
                 return !isHiddenPatientAttribute(hiddenAttributes, item) &&
-                    !isItemAMandatoryField(item) &&
-                    !isAttributeInOtherSection(patientInformation, patientAttributesSections, item);
+                !isItemAMandatoryField(item) &&
+                !isAttributeInOtherSection(patientInformation, patientAttributesSections, item);
             });
 
             this.attributeRows = this.splitAsRows(otherInformationAttributes);

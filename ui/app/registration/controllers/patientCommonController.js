@@ -90,8 +90,9 @@ angular.module('bahmni.registration')
                                 $scope.deathConcepts = results.data.results[0] ? results.data.results[0].setMembers : [];
 
                                 var activeDeathConcepts = filterRetireDeathConcepts($scope.deathConcepts);
-                                _.forEach(activeDeathConcepts, function(deathConcept, index)  {
-                                    activeDeathConcepts[index] = $scope.updateDisplayFieldToLocaleSpecific($scope.filterNamesForLocale(deathConcept, $rootScope.currentUser.userProperties.defaultLocale, "FULLY_SPECIFIED"))
+                                _.forEach(activeDeathConcepts, function (deathConcept, index) {
+                                    activeDeathConcepts[index] = $scope.updateDisplayFieldToLocaleSpecific(
+                                    $scope.filterNamesForLocale(deathConcept, $rootScope.currentUser.userProperties.defaultLocale, "FULLY_SPECIFIED"));
                                 });
                             });
                         }
@@ -106,10 +107,12 @@ angular.module('bahmni.registration')
             };
 
             $scope.filterNamesForLocale = function (jsonNames, locale, nametype) {
-                var localeNames =  _.filter(jsonNames.names, function(name) {
-                    return name.locale == locale && name.conceptNameType == nametype
+                var localeNames = _.filter(jsonNames.names, function (name) {
+                    return name.locale == locale && name.conceptNameType == nametype;
                 });
-                jsonNames.names = localeNames;
+                if (localeNames.length > 0) {
+                    jsonNames.names = localeNames;
+                }
                 return jsonNames;
             };
 

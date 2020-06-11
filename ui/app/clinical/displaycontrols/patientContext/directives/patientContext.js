@@ -14,6 +14,7 @@ angular.module('bahmni.clinical')
                 convertBooleanValuesToEnglish(personAttributes);
                 convertBooleanValuesToEnglish(programAttributes);
 
+                translateAttributes(personAttributes);
                 var preferredIdentifier = patientContextConfig.preferredIdentifier;
                 if (preferredIdentifier) {
                     if (programAttributes[preferredIdentifier]) {
@@ -41,6 +42,18 @@ angular.module('bahmni.clinical')
             var booleanMap = {'true': 'Yes', 'false': 'No'};
             _.forEach(attributes, function (value) {
                 value.value = booleanMap[value.value] ? booleanMap[value.value] : value.value;
+            });
+        };
+
+        var translateAttributes = function (attributes) {
+            _.forEach(attributes, function (attribute, key) {
+                var keyPrefix = "";
+                var keyName = key.toUpperCase().replace(/\s\s+/g, ' ').replace(/[^a-zA-Z0-9 ]/g, "").trim().replace(/ /g, "");
+                var translationKey = keyPrefix + keyName;
+                var translation = $translate.instant(translationKey);
+                if (translation != translationKey) {
+                    attribute.description = translation;
+                }
             });
         };
 

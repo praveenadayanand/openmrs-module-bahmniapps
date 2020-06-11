@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('bahmni.common.attributeTypes', []).directive('attributeTypes', ['$translate', function ($translate) {
-    var modulePrefixMap = { 'registration': 'REGISTRATION_ATTRIB_',
-                            'program' : 'PROGRAM_ATTRIBUTE_',
-                            'OT' : 'OT_'
-                            };
+    var modulePrefixMap = {
+        'registration': 'REGISTRATION_ATTRIB_',
+        'program': 'PROGRAM_ATTRIBUTE_',
+        'OT': 'OT_'
+    };
     return {
         scope: {
             targetModel: '=',
@@ -34,19 +35,18 @@ angular.module('bahmni.common.attributeTypes', []).directive('attributeTypes', [
                 });
                 attributeValueConceptType.value = concept && concept.fullySpecifiedName;
             };
-            $scope.translateAttributeName = function(attribute, moduleName) {
+            $scope.translateAttributeName = function (attribute, moduleName) {
                 var keyPrefix = moduleName && modulePrefixMap[moduleName] ? modulePrefixMap[moduleName] : '';
                 keyPrefix = (keyPrefix == '' && attribute.keyPrefix) ? attribute.keyPrefix : '';
 
-                var keyName = attribute.name.toUpperCase().replace(/\s\s+/g, ' ').replace(/[^a-zA-Z0-9 _]/g, "").trim().replace(/ /g,"_")
-                var translationKey = keyPrefix+keyName;
+                var keyName = attribute.name.toUpperCase().replace(/\s\s+/g, ' ').replace(/[^a-zA-Z0-9 _]/g, "").trim().replace(/ /g, "_");
+                var translationKey = keyPrefix + keyName;
                 var translation = $translate.instant(translationKey);
                 if (translation == translationKey) {
                     return attribute.description;
                 }
                 return translation;
-            }
-
+            };
         }
     };
 }]);
