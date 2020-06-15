@@ -43,7 +43,7 @@
                     };
                     var assignPatientDetails = function () {
                         var patientMapper = new Bahmni.PatientMapper(configurations.patientConfig(), $rootScope, $translate);
-                        return patientService.getPatient($scope.patientUuid).then(function (response) {
+                        return patientService.getPatient($scope.patientUuid, "bahmni").then(function (response) {
                             var openMrsPatient = response.data;
                             $scope.patient = patientMapper.map(openMrsPatient);
                         });
