@@ -26,8 +26,6 @@ angular.module('bahmni.clinical').factory('initialization',
                     });
                 };
 
-
-
                 var checkPrivilege = function () {
                     return appService.checkPrivilege("app:clinical");
                 };

@@ -42,7 +42,7 @@ angular.module('bahmni.common.displaycontrol.diagnosis')
                 };
 
                 $scope.translateDiagnosisLabels = function (key, type) {
-                    if(key) {
+                    if (key) {
                         var translationKey = "CLINICAL_DIAGNOSIS_" + type + "_" + key.toUpperCase();
                         var translation = $translate.instant(translationKey);
                         if (translation != translationKey) {

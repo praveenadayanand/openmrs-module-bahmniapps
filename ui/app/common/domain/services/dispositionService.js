@@ -2,10 +2,10 @@
 
 angular.module('bahmni.common.domain')
     .factory('dispositionService', ['$http', function ($http) {
-        var getDispositionActions = function () {
+        var getDispositionActions = function (defaultLocale) {
             return $http.get(Bahmni.Common.Constants.conceptSearchByFullNameUrl +
                 "&name=" + Bahmni.Common.Constants.dispositionConcept +
-                "&v=custom:(uuid,name,answers:(uuid,name,mappings))", {cache: true});
+                "&v=custom:(uuid,name,answers:(uuid,name,mappings))", defaultLocale, {cache: true});
         };
 
         var getDispositionNoteConcept = function () {
@@ -14,17 +14,21 @@ angular.module('bahmni.common.domain')
                 "&v=custom:(uuid,name:(name))", {cache: true});
         };
 
-        var getDispositionByVisit = function (visitUuid) {
+        var getDispositionByVisit = function (visitUuid, defaultLocale) {
             return $http.get(Bahmni.Common.Constants.bahmniDispositionByVisitUrl, {
-                params: {visitUuid: visitUuid}
+                params: {
+                    visitUuid: visitUuid,
+                    preferredLocale: defaultLocale
+                }
             });
         };
 
-        var getDispositionByPatient = function (patientUuid, numberOfVisits) {
+        var getDispositionByPatient = function (patientUuid, numberOfVisits, defaultLocale) {
             return $http.get(Bahmni.Common.Constants.bahmniDispositionByPatientUrl, {
                 params: {
                     patientUuid: patientUuid,
-                    numberOfVisits: numberOfVisits
+                    numberOfVisits: numberOfVisits,
+                    preferredLocale: defaultLocale
                 }
             });
         };
