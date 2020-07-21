@@ -10,11 +10,10 @@ angular.module('bahmni.clinical')
                 $scope.patientContext = response.data;
                 var programAttributes = $scope.patientContext.programAttributes;
                 var personAttributes = $scope.patientContext.personAttributes;
-
                 convertBooleanValuesToEnglish(personAttributes);
                 convertBooleanValuesToEnglish(programAttributes);
-
                 translateAttributes(personAttributes);
+                translateAttributes(programAttributes);
                 var preferredIdentifier = patientContextConfig.preferredIdentifier;
                 if (preferredIdentifier) {
                     if (programAttributes[preferredIdentifier]) {
@@ -48,7 +47,7 @@ angular.module('bahmni.clinical')
         var translateAttributes = function (attributes) {
             _.forEach(attributes, function (attribute, key) {
                 var keyPrefix = "";
-                var keyName = key.toUpperCase().replace(/\s\s+/g, ' ').replace(/[^a-zA-Z0-9 ]/g, "").trim().replace(/ /g, "");
+                var keyName = key.toUpperCase().replace(/\s\s+/g, ' ').replace(/[^a-zA-Z0-9 _]/g, "").trim().replace(/ /g, "_");
                 var translationKey = keyPrefix + keyName;
                 var translation = $translate.instant(translationKey);
                 if (translation != translationKey) {

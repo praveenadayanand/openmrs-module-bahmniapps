@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.common.displaycontrol.forms')
-    .directive('formsTable', ['conceptSetService', 'spinner', '$q', 'visitFormService', 'appService', '$state','$rootScope',
+    .directive('formsTable', ['conceptSetService', 'spinner', '$q', 'visitFormService', 'appService', '$state', '$rootScope',
         function (conceptSetService, spinner, $q, visitFormService, appService, $state, $rootScope) {
             var defaultController = function ($scope) {
                 $scope.shouldPromptBrowserReload = true;
@@ -55,7 +55,7 @@ angular.module('bahmni.common.displaycontrol.forms')
                 $scope.getDisplayName = function (data) {
                     var concept = data.concept;
                     var defaultLocale = $rootScope.currentUser.userProperties.defaultLocale;
-                    var displayName = getLocaleSpecificConceptName(concept,defaultLocale,"FULLY_SPECIFIED");
+                    var displayName = getLocaleSpecificConceptName(concept, defaultLocale, "FULLY_SPECIFIED");
                     if (concept.names && concept.names.length === 1 && concept.names[0].name != "") {
                         displayName = concept.names[0].name;
                     } else if (concept.names && concept.names.length === 2) {
@@ -65,7 +65,6 @@ angular.module('bahmni.common.displaycontrol.forms')
                     return displayName;
                 };
                 var getLocaleSpecificConceptName = function (concept, locale, conceptNameType) {
-
                     conceptNameType = conceptNameType ? conceptNameType : "SHORT";
                     var localeSpecificName = _.filter(concept.names, function (name) {
                         return name.locale == locale && name.conceptNameType == conceptNameType;
