@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('bahmni.clinical')
-    .controller('DispositionController', ['$scope', '$q', 'dispositionService', 'retrospectiveEntryService', 'spinner', '$rootScope', function ($scope, $q, dispositionService, retrospectiveEntryService, spinner, $rootScope) {
+    .controller('DispositionController', ['$scope', '$q', 'dispositionService', 'retrospectiveEntryService', 'spinner', function ($scope, $q, dispositionService, retrospectiveEntryService, spinner) {
         var consultation = $scope.consultation;
         var allDispositions = [];
-        var defaultLocale = $rootScope.currentUser.userProperties.defaultLocale;
 
         var getPreviousDispositionNote = function () {
             if (consultation.disposition && (!consultation.disposition.voided)) {
@@ -25,7 +24,7 @@ angular.module('bahmni.clinical')
         };
 
         var getDispositionActionsPromise = function () {
-            return dispositionService.getDispositionActions(defaultLocale).then(function (response) {
+            return dispositionService.getDispositionActions().then(function (response) {
                 allDispositions = new Bahmni.Clinical.DispostionActionMapper().map(response.data.results[0].answers);
                 $scope.dispositionActions = filterDispositionActions(allDispositions, $scope.$parent.visitSummary);
                 $scope.dispositionCode = consultation.disposition && (!consultation.disposition.voided) ? consultation.disposition.code : null;

@@ -15,7 +15,7 @@ Bahmni.Clinical.DispostionActionMapper = function () {
 
     this.map = function (dispositionActions) {
         return dispositionActions.map(function (dispositionAction) {
-            return {name: dispositionAction.preferredName, code: getMappingCode(dispositionAction) };
+            return {name: dispositionAction.name.name, code: getMappingCode(dispositionAction) };
         });
     };
 };

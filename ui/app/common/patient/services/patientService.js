@@ -3,9 +3,8 @@
 angular.module('bahmni.common.patient')
     .service('patientService', ['$http', 'sessionService', function ($http, sessionService) {
         this.getPatient = function (uuid, rep) {
-            if (!rep) {
+            if(!rep)
                 rep = "full";
-            }
             var patient = $http.get(Bahmni.Common.Constants.openmrsUrl + "/ws/rest/v1/patient/" + uuid, {
                 method: "GET",
                 params: {v: rep},
