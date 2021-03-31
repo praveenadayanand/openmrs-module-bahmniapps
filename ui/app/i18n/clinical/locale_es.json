@@ -204,10 +204,5 @@
     "CONDITION_LIST_FOLLOW_UP": "Seguimiento",
     "CONDITION_LIST_ACTIVE_SINCE": "condición de",
     "CONDITION_LIST_NO_CONDITIONS": "No hay Condiciones disponibles",
-    "CONDITION_LIST_NO_RETRO_MODE": "<strong>Las condiciones no pueden</strong> ser editadas en modo retroactivo",
-    "CLINICAL_DIAGNOSIS_ORDER_PRIMARY":"primario",
-    "CLINICAL_DIAGNOSIS_ORDER_SECONDARY":"secundario",
-    "CLINICAL_DIAGNOSIS_CERTAINTY_CONFIRMED":"empedernido",
-    "CLINICAL_DIAGNOSIS_CERTAINTY_PRESUMED": "supuesto"
-
+    "CONDITION_LIST_NO_RETRO_MODE": "<strong>Las condiciones no pueden</strong> ser editadas en modo retroactivo"
 }

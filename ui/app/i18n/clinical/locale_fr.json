@@ -230,9 +230,5 @@
   "OBS_BOOLEAN_NO_KEY": "Non",
   "DIAGNOSIS_INITIAL_STAGE_LABEL": "Initiale",
   "DIAGNOSIS_CURRENT_STAGE_LABEL": "Actuel",
-  "CONDITION_LIST_NO_RETRO_MODE": "<strong>Conditions cannot</strong> be edited in retrospective mode",
-  "CLINICAL_DIAGNOSIS_ORDER_PRIMARY":"PRIMAIRE",
-  "CLINICAL_DIAGNOSIS_ORDER_SECONDARY":"SECONDAIRE",
-  "CLINICAL_DIAGNOSIS_CERTAINTY_CONFIRMED":"confirmé",
-  "CLINICAL_DIAGNOSIS_CERTAINTY_PRESUMED": "présumé"
+  "CONDITION_LIST_NO_RETRO_MODE": "<strong>Conditions cannot</strong> be edited in retrospective mode"
 }
