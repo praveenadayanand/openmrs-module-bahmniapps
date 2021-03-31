@@ -85,7 +85,7 @@ angular.module('bahmni.clinical')
 
         var getSelectedConceptName = function (dispositionCode, dispositions) {
             var selectedDispositionConceptName = _.findLast(dispositions, {code: dispositionCode}) || {};
-            return selectedDispositionConceptName.code;
+            return selectedDispositionConceptName.name;
         };
 
         var getSelectedDisposition = function () {
