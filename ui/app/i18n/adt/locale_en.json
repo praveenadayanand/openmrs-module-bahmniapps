@@ -63,7 +63,5 @@
     "BED_LABEL": "Bed",
     "ASSIGN_BED_LABEL": "Assign",
     "TRANSFER_BED_LABEL": "Transfer",
-    "EMPTY_WARD_MESSAGE": "There are no patients in this ward.",
-    "BED_MANAGEMENT_BED_DETAILS": "Bed Details",
-    "BED_MANAGEMENT_GENERAL_WARD": "General Ward"
+    "EMPTY_WARD_MESSAGE": "There are no patients in this ward."
 }

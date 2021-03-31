@@ -28,7 +28,7 @@ angular.module('bahmni.common.domain')
                 params: {
                     patientUuid: patientUuid,
                     numberOfVisits: numberOfVisits,
-                    locale: defaultLocale
+                    preferredLocale: defaultLocale
                 }
             });
         };

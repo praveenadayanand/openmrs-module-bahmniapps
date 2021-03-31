@@ -1,13 +1,8 @@
 'use strict';
 
 angular.module('bahmni.common.uicontrols.programmanagment')
-    .controller('ProgramAttributesController', ['$scope', '$translate', function ($scope, $translate) {
+    .controller('ProgramAttributesController', ['$scope', function ($scope) {
         var program = $scope.patientProgram.program;
-        var modulePrefixMap = {
-                'registration': 'REGISTRATION',
-                'program': 'PROGRAM',
-                'OT': 'OT'
-        };
         $scope.getProgramAttributesMap = function () {
             var programAttributesMap = {};
             var programAttributes = $scope.patientProgram.attributes;
@@ -25,17 +20,7 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             });
             return programAttributesMap;
         };
-        $scope.translateAttributeName = function (attribute, moduleName) {
-            var keyPrefix = moduleName && modulePrefixMap[moduleName] ? modulePrefixMap[moduleName] : '';
-            keyPrefix = (keyPrefix == '' && attribute.keyPrefix) ? attribute.keyPrefix : '';
-            var keyName = attribute.name.toUpperCase().replace(/\s\s+/g, ' ').replace(/[^a-zA-Z0-9 _]/g, "").trim().replace(/ /g, "_");
-            var translationKey = keyPrefix + keyName;
-            var translation = $translate.instant(translationKey);
-            if (translation == translationKey) {
-                return attribute.description;
-            }
-            return translation;
-        };
+
         $scope.getValueForAttributeType = function (attributeType) {
             var programAttributesMap = $scope.patientProgram.patientProgramAttributes;
 

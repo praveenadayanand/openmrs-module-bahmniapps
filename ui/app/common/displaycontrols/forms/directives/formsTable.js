@@ -33,32 +33,7 @@ angular.module('bahmni.common.displaycontrol.forms')
                 var sortedFormDataByLatestDate = function (formData) {
                     return _.sortBy(formData, "obsDatetime").reverse();
                 };
-                $scope.doesUserHaveAccessToTheForm = function (data, action) {
-                    if (data.privileges != undefined) {
-                        var editable = [];
-                        var viewable = [];
-                        data.privileges.forEach(function (formPrivilege) {
-                            _.find($rootScope.currentUser.privileges, function (privilege) {
-                                if (formPrivilege.privilegeName === privilege.name) {
-                                    if (action === 'edit') {
-                                        editable.push(formPrivilege.editable);
-                                    } else {
-                                        viewable.push(formPrivilege.viewable);
-                                    }
-                                }
-                            });
-                        });
-                        if (action === 'edit') {
-                            if (editable.includes(true)) {
-                                return true;
-                            }
-                        } else {
-                            if (viewable.includes(true)) {
-                                return true;
-                            }
-                        }
-                    } else { return true; }
-                };
+
                 var init = function () {
                     $scope.formsNotFound = false;
                     return $q.all([getAllObservationTemplates(), obsFormData()]).then(function (results) {
@@ -81,28 +56,23 @@ angular.module('bahmni.common.displaycontrol.forms')
                     var concept = data.concept;
                     var defaultLocale = $rootScope.currentUser.userProperties.defaultLocale;
                     var displayName = getLocaleSpecificConceptName(concept, defaultLocale, "FULLY_SPECIFIED");
-//                    if (concept.names && concept.names.length === 1 && concept.names[0].name != "") {
-//                        displayName = concept.names[0].name;
-//                    } else if (concept.names && concept.names.length > 1) {
-//                        var shortName = _.find(concept.names, {conceptNameType: "SHORT"});
-//                        if (shortName.localePreferred) {
-//                          displayName = shortName.name;
-//                        } else {
-//                          displayName = shortName && shortName.name ? shortName.name : displayNam
-//                         }
-//
-//                    }
-                return displayName;
+                    if (concept.names && concept.names.length === 1 && concept.names[0].name != "") {
+                        displayName = concept.names[0].name;
+                    } else if (concept.names && concept.names.length === 2) {
+                        var shortName = _.find(concept.names, {conceptNameType: "SHORT"});
+                        displayName = shortName && shortName.name ? shortName.name : displayName;
+                    }
+                    return displayName;
                 };
                 var getLocaleSpecificConceptName = function (concept, locale, conceptNameType) {
                     conceptNameType = conceptNameType ? conceptNameType : "SHORT";
                     var localeSpecificName = _.filter(concept.names, function (name) {
-                        return ((name.locale === locale) && (name.conceptNameType === conceptNameType));
+                        return name.locale == locale && name.conceptNameType == conceptNameType;
                     });
                     if (localeSpecificName && localeSpecificName[0]) {
                         return localeSpecificName[0].display;
                     }
-                    return concept.name.name;
+                    return null;
                 };
                 $scope.initialization = init();
 

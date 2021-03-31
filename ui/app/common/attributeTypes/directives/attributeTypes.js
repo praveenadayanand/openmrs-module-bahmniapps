@@ -2,9 +2,9 @@
 
 angular.module('bahmni.common.attributeTypes', []).directive('attributeTypes', ['$translate', function ($translate) {
     var modulePrefixMap = {
-        'registration': 'REGISTRATION',
-        'program': 'PROGRAM',
-        'OT': 'OT'
+        'registration': 'REGISTRATION_ATTRIB_',
+        'program': 'PROGRAM_ATTRIBUTE_',
+        'OT': 'OT_'
     };
     return {
         scope: {
@@ -38,6 +38,7 @@ angular.module('bahmni.common.attributeTypes', []).directive('attributeTypes', [
             $scope.translateAttributeName = function (attribute, moduleName) {
                 var keyPrefix = moduleName && modulePrefixMap[moduleName] ? modulePrefixMap[moduleName] : '';
                 keyPrefix = (keyPrefix == '' && attribute.keyPrefix) ? attribute.keyPrefix : '';
+
                 var keyName = attribute.name.toUpperCase().replace(/\s\s+/g, ' ').replace(/[^a-zA-Z0-9 _]/g, "").trim().replace(/ /g, "_");
                 var translationKey = keyPrefix + keyName;
                 var translation = $translate.instant(translationKey);

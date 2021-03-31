@@ -8,11 +8,7 @@ describe('versionedFormController', function () {
 
     beforeEach(module('bahmni.common.displaycontrol.forms', function ($provide) {
         appService = jasmine.createSpyObj('appService', ['getAppDescriptor']);
-<<<<<<< HEAD
         formService = jasmine.createSpyObj('formService', ['getAllPatientForms', 'getFormList']);
-=======
-        formService = jasmine.createSpyObj('formService', ['getAllPatientForms']);
->>>>>>> 5e7609fff...  #BAH-693 | Forms display control for V2 forms (#213)
         appService.getAppDescriptor.and.returnValue({
             getConfigValue: function () {
                 return true;
@@ -45,11 +41,7 @@ describe('versionedFormController', function () {
     };
 
 
-<<<<<<< HEAD
     var mockFormServiceGetAllPatientForms = function (data) {
-=======
-    var mockFormService = function (data) {
->>>>>>> 5e7609fff...  #BAH-693 | Forms display control for V2 forms (#213)
         formService.getAllPatientForms.and.callFake(function () {
             return {
                 then: function (callback) {
@@ -66,7 +58,6 @@ describe('versionedFormController', function () {
         expect(scope.getDisplayName(formData)).toEqual('Test Form');
     });
 
-<<<<<<< HEAD
     it('should return translated formName when form has translations', function () {
         q = jasmine.createSpyObj('$q', ['all']);
         let allFormData = [{formName: 'Simple', encounterDateTime: '2015-12-18T17:26:31.000+0000'}, {
@@ -102,11 +93,6 @@ describe('versionedFormController', function () {
     it('should set formsNotFound to true when data is empty', function () {
         const formDataObj = {"data": []};
         mockFormServiceGetAllPatientForms(formDataObj);
-=======
-    it('should set formsNotFound to true when data is empty', function () {
-        const formDataObj = {"data": []};
-        mockFormService(formDataObj);
->>>>>>> 5e7609fff...  #BAH-693 | Forms display control for V2 forms (#213)
         createController();
         scope.$digest();
 
@@ -125,11 +111,7 @@ describe('versionedFormController', function () {
         }];
         let data = {"data": formData};
         scope.section.formGroup = ['First', 'Second'];
-<<<<<<< HEAD
         mockFormServiceGetAllPatientForms(data);
-=======
-        mockFormService(data);
->>>>>>> 5e7609fff...  #BAH-693 | Forms display control for V2 forms (#213)
         createController();
         scope.$digest();
 
@@ -149,11 +131,7 @@ describe('versionedFormController', function () {
         let data = {"data": formData};
         scope.isOnDashboard = true;
         scope.section.formGroup = ['First', 'Second'];
-<<<<<<< HEAD
         mockFormServiceGetAllPatientForms(data);
-=======
-        mockFormService(data);
->>>>>>> 5e7609fff...  #BAH-693 | Forms display control for V2 forms (#213)
         createController();
         scope.$digest();
 
@@ -168,11 +146,7 @@ describe('versionedFormController', function () {
         }, {formName: 'First', encounterDateTime: '2015-12-16T16:26:31.000+0000'}];
         let data = {"data": formData};
         scope.section.formGroup = ['First', 'Second'];
-<<<<<<< HEAD
         mockFormServiceGetAllPatientForms(data);
-=======
-        mockFormService(data);
->>>>>>> 5e7609fff...  #BAH-693 | Forms display control for V2 forms (#213)
         createController();
         scope.$digest();
 
@@ -189,7 +163,6 @@ describe('versionedFormController', function () {
         scope.$digest();
 
         expect(scope.dialogData).toEqual(expectedDialogData);
-<<<<<<< HEAD
     });
 
     it('should get EditObs data for given formData', function () {
@@ -211,7 +184,4 @@ describe('versionedFormController', function () {
     });
 
 
-=======
-    })
->>>>>>> 5e7609fff...  #BAH-693 | Forms display control for V2 forms (#213)
 });

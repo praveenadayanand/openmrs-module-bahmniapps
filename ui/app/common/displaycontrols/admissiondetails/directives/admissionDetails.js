@@ -1,15 +1,8 @@
 "use strict";
 
 angular.module('bahmni.common.displaycontrol.admissiondetails')
-    .directive('admissionDetails', ['bedService', '$translate', function(bedService, $translate) {
-        var modulePrefixMap = {
-            'registration': 'REGISTRATION_',
-            'program': 'PROGRAM_',
-            'OT': 'OT_',
-            'BM': 'BED_MANAGEMENT_'
-        };
+    .directive('admissionDetails', ['bedService', function (bedService) {
         var controller = function ($scope) {
-
             $scope.showDetailsButton = function (encounter) {
                 return $scope.params && $scope.params.showDetailsButton && !encounter.notes;
             };
@@ -18,7 +11,6 @@ angular.module('bahmni.common.displaycontrol.admissiondetails')
             };
             init($scope);
         };
-
         var isReady = function ($scope) {
             return !_.isUndefined($scope.patientUuid) && !_.isUndefined($scope.visitSummary);
         };
@@ -42,13 +34,6 @@ angular.module('bahmni.common.displaycontrol.admissiondetails')
                 }
 
                 return true;
-            };
-            $scope.translateAttributeName = function (attribute, moduleName) {
-                var keyPrefix = modulePrefixMap[moduleName];
-                var keyName = attribute.toUpperCase().replace(/\s\s+/g, ' ').replace(/[^a-zA-Z0-9 _]/g, "").trim().replace(/ /g, "_");
-                var translationKey = keyPrefix + keyName;
-                var translation = $translate.instant(translationKey);
-                return translation;
             };
         };
         return {
