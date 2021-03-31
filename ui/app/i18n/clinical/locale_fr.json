@@ -239,8 +239,5 @@
   "CLINICAL_STATUS": "STATUT",
   "EROSION": "ÉROSION",
   "OBSTRETRICS": "Obstétrique",
-  "TUBERCULOSIS_FOLLOW_UP": "Tuberculose, visite de suivi",
-  "CASTE": "Caste",
-  "CLASS": "Classe",
-  "NATIONAL_ID": "Carte d'identité"
+  "TUBERCULOSIS_FOLLOW_UP": "Tuberculose, visite de suivi"
 }
